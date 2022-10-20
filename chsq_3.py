@@ -43,17 +43,20 @@ print ("count=",count)
 #plt.show()
 
 CHI = 0
+CHIYates = 0
 i = 0
 while i < len(count):
    # print ("count[i]=", (count[i]))
    CHI = (count[i]-EYi) ** 2 + CHI
+   CHIYates = (abs(count[i]-EYi)-0.5) ** 2 + CHIYates
    i = i+1
 
 CHI = CHI / EYi
+CHIYates = CHIYates / EYi
 print ("EYi=", EYi)
 print ("CHI=", CHI)
-print ("1-p=", 1-chi2.cdf(CHI, B-1))
-
+print ("Chi-Squared 1-p=", 1-chi2.cdf(CHI, B-1))
+print ("Chi-Squared Yates correction 1-p=", 1-chi2.cdf(CHIYates, B-1))
 
 
 print("kstest chi2:",stats.kstest(s, stats.chi2(B-1).cdf))
